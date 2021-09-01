@@ -1,0 +1,52 @@
+name: "Learn R: As a Language"
+navbar:
+  title: "Learn R: As a Language"
+  left:
+    - text: "Book"
+      icon: fas fa-book fa-lg
+      menu:
+      - text: "Contents"
+        icon: fas fa-list fa-lg
+        href: contents.html
+      - text: "Preface"
+        icon: fas fa-file-alt fa-lg
+        href: preface.html
+      - text: "R Code"
+        icon: fas fa-file fa-lg
+        href: https://docs.r4photobiology.info/learnrbook/
+    - text: "Supplements"
+      icon: fas fa-paperclip fa-lg
+      menu:
+      - text: "Free chapters (draft)"
+        icon: fas fa-file-pdf fa-lg
+        href: learn-r-extra-web.pdf
+      - text: "Wordcloud"
+        icon: fas fa-file-alt fa-lg
+        href: wordcloud.html
+    - text: "Also by the author"
+      icon: fas fa-folder-open fa-lg
+      menu:
+      - text: "Package 'learnr-book'"
+        icon: fas fa-file-alt fa-lg
+        href: https://docs.r4photobiology.info/learnrbook/
+      - text: "Package 'ggpmisc'"
+        icon: fas fa-file-alt fa-lg
+        href: https://docs.r4photobiology.info/ggpmisc/
+      - text: "Package 'ggpp'"
+        icon: fas fa-file-alt fa-lg
+        href: https://docs.r4photobiology.info/ggpp/
+      - text: "Package 'gginnards'"
+        icon: fas fa-file-alt fa-lg
+        href: https://docs.r4photobiology.info/gginnards/
+      - text: "R for Photobiology Suite"
+        icon: fas fa-file-alt fa-lg
+        href: https://www.r4photobiology.info/
+    - text: "About"
+      icon: fas fa-address-card fa-lg
+      href: about.html
+  right:
+    - text: "GitHub"
+      icon: fab fa-github fa-lg
+      href: https://github.com/aphalo/learnr-book-crc
+
+

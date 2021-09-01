@@ -1,0 +1,557 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+<meta charset="utf-8" />
+<meta name="generator" content="pandoc" />
+<meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
+
+
+
+
+<title>Learn R: As a Language</title>
+
+<script src="site_libs/header-attrs-2.10/header-attrs.js"></script>
+<script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link href="site_libs/bootstrap-3.3.5/css/bootstrap.min.css" rel="stylesheet" />
+<script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/respond.min.js"></script>
+<style>h1 {font-size: 34px;}
+       h1.title {font-size: 38px;}
+       h2 {font-size: 30px;}
+       h3 {font-size: 24px;}
+       h4 {font-size: 18px;}
+       h5 {font-size: 16px;}
+       h6 {font-size: 12px;}
+       code {color: inherit; background-color: rgba(0, 0, 0, 0.04);}
+       pre:not([class]) { background-color: white }</style>
+<script src="site_libs/navigation-1.1/tabsets.js"></script>
+<link href="site_libs/highlightjs-9.12.0/default.css" rel="stylesheet" />
+<script src="site_libs/highlightjs-9.12.0/highlight.js"></script>
+<link href="site_libs/font-awesome-5.1.0/css/all.css" rel="stylesheet" />
+<link href="site_libs/font-awesome-5.1.0/css/v4-shims.css" rel="stylesheet" />
+
+<style type="text/css">
+  code{white-space: pre-wrap;}
+  span.smallcaps{font-variant: small-caps;}
+  span.underline{text-decoration: underline;}
+  div.column{display: inline-block; vertical-align: top; width: 50%;}
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+  ul.task-list{list-style: none;}
+    </style>
+
+<style type="text/css">code{white-space: pre;}</style>
+<script type="text/javascript">
+if (window.hljs) {
+  hljs.configure({languages: []});
+  hljs.initHighlightingOnLoad();
+  if (document.readyState && document.readyState === "complete") {
+    window.setTimeout(function() { hljs.initHighlighting(); }, 0);
+  }
+}
+</script>
+
+
+
+
+
+
+
+
+<style type = "text/css">
+.main-container {
+  max-width: 940px;
+  margin-left: auto;
+  margin-right: auto;
+}
+img {
+  max-width:100%;
+}
+.tabbed-pane {
+  padding-top: 12px;
+}
+.html-widget {
+  margin-bottom: 20px;
+}
+button.code-folding-btn:focus {
+  outline: none;
+}
+summary {
+  display: list-item;
+}
+pre code {
+  padding: 0;
+}
+</style>
+
+
+<style type="text/css">
+.dropdown-submenu {
+  position: relative;
+}
+.dropdown-submenu>.dropdown-menu {
+  top: 0;
+  left: 100%;
+  margin-top: -6px;
+  margin-left: -1px;
+  border-radius: 0 6px 6px 6px;
+}
+.dropdown-submenu:hover>.dropdown-menu {
+  display: block;
+}
+.dropdown-submenu>a:after {
+  display: block;
+  content: " ";
+  float: right;
+  width: 0;
+  height: 0;
+  border-color: transparent;
+  border-style: solid;
+  border-width: 5px 0 5px 5px;
+  border-left-color: #cccccc;
+  margin-top: 5px;
+  margin-right: -10px;
+}
+.dropdown-submenu:hover>a:after {
+  border-left-color: #adb5bd;
+}
+.dropdown-submenu.pull-left {
+  float: none;
+}
+.dropdown-submenu.pull-left>.dropdown-menu {
+  left: -100%;
+  margin-left: 10px;
+  border-radius: 6px 0 6px 6px;
+}
+</style>
+
+<script type="text/javascript">
+// manage active state of menu based on current page
+$(document).ready(function () {
+  // active menu anchor
+  href = window.location.pathname
+  href = href.substr(href.lastIndexOf('/') + 1)
+  if (href === "")
+    href = "index.html";
+  var menuAnchor = $('a[href="' + href + '"]');
+
+  // mark it active
+  menuAnchor.tab('show');
+
+  // if it's got a parent navbar menu mark it active as well
+  menuAnchor.closest('li.dropdown').addClass('active');
+
+  // Navbar adjustments
+  var navHeight = $(".navbar").first().height() + 15;
+  var style = document.createElement('style');
+  var pt = "padding-top: " + navHeight + "px; ";
+  var mt = "margin-top: -" + navHeight + "px; ";
+  var css = "";
+  // offset scroll position for anchor links (for fixed navbar)
+  for (var i = 1; i <= 6; i++) {
+    css += ".section h" + i + "{ " + pt + mt + "}\n";
+  }
+  style.innerHTML = "body {" + pt + "padding-bottom: 40px; }\n" + css;
+  document.head.appendChild(style);
+});
+</script>
+
+<!-- tabsets -->
+
+<style type="text/css">
+.tabset-dropdown > .nav-tabs {
+  display: inline-table;
+  max-height: 500px;
+  min-height: 44px;
+  overflow-y: auto;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.tabset-dropdown > .nav-tabs > li.active:before {
+  content: "";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li.active:before {
+  content: "&#xe258;";
+  border: none;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open:before {
+  content: "";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs > li.active {
+  display: block;
+}
+
+.tabset-dropdown > .nav-tabs > li > a,
+.tabset-dropdown > .nav-tabs > li > a:focus,
+.tabset-dropdown > .nav-tabs > li > a:hover {
+  border: none;
+  display: inline-block;
+  border-radius: 4px;
+  background-color: transparent;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li {
+  display: block;
+  float: none;
+}
+
+.tabset-dropdown > .nav-tabs > li {
+  display: none;
+}
+</style>
+
+<!-- code folding -->
+
+
+
+
+</head>
+
+<body>
+
+
+<div class="container-fluid main-container">
+
+
+
+
+<div class="navbar navbar-default  navbar-fixed-top" role="navigation">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="index.html">Learn R: As a Language</a>
+    </div>
+    <div id="navbar" class="navbar-collapse collapse">
+      <ul class="nav navbar-nav">
+        <li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+    <span class="fas fa-book fa-lg"></span>
+     
+    Book
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="contents.html">
+        <span class="fas fa-list fa-lg"></span>
+         
+        Contents
+      </a>
+    </li>
+    <li>
+      <a href="preface.html">
+        <span class="fas fa-file-alt fa-lg"></span>
+         
+        Preface
+      </a>
+    </li>
+    <li>
+      <a href="https://docs.r4photobiology.info/learnrbook/">
+        <span class="fas fa-file fa-lg"></span>
+         
+        R Code
+      </a>
+    </li>
+  </ul>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+    <span class="fas fa-paperclip fa-lg"></span>
+     
+    Supplements
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="learn-r-extra-web.pdf">
+        <span class="fas fa-file-pdf fa-lg"></span>
+         
+        Free chapters (draft)
+      </a>
+    </li>
+    <li>
+      <a href="wordcloud.html">
+        <span class="fas fa-file-alt fa-lg"></span>
+         
+        Wordcloud
+      </a>
+    </li>
+  </ul>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+    <span class="fas fa-folder-open fa-lg"></span>
+     
+    Also by the author
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="https://docs.r4photobiology.info/learnrbook/">
+        <span class="fas fa-file-alt fa-lg"></span>
+         
+        Package 'learnr-book'
+      </a>
+    </li>
+    <li>
+      <a href="https://docs.r4photobiology.info/ggpmisc/">
+        <span class="fas fa-file-alt fa-lg"></span>
+         
+        Package 'ggpmisc'
+      </a>
+    </li>
+    <li>
+      <a href="https://docs.r4photobiology.info/ggpp/">
+        <span class="fas fa-file-alt fa-lg"></span>
+         
+        Package 'ggpp'
+      </a>
+    </li>
+    <li>
+      <a href="https://docs.r4photobiology.info/gginnards/">
+        <span class="fas fa-file-alt fa-lg"></span>
+         
+        Package 'gginnards'
+      </a>
+    </li>
+    <li>
+      <a href="https://www.r4photobiology.info/">
+        <span class="fas fa-file-alt fa-lg"></span>
+         
+        R for Photobiology Suite
+      </a>
+    </li>
+  </ul>
+</li>
+<li>
+  <a href="about.html">
+    <span class="fas fa-address-card fa-lg"></span>
+     
+    About
+  </a>
+</li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        <li>
+  <a href="https://github.com/aphalo/learnr-book-crc">
+    <span class="fab fa-github fa-lg"></span>
+     
+    GitHub
+  </a>
+</li>
+      </ul>
+    </div><!--/.nav-collapse -->
+  </div><!--/.container -->
+</div><!--/.navbar -->
+
+<div id="header">
+
+
+
+<h1 class="title toc-ignore">Learn R: As a Language</h1>
+<h3 class="subtitle">The Word Cloud on the cover</h3>
+
+</div>
+
+
+<div id="introduction" class="section level2">
+<h2>Introduction</h2>
+<p>I created the word cloud on the cover of “Learn R: As a Language” using an R script that takes as input the file for the book index, as generated when creating the PDF from the LaTeX source files. This input file contained quite a lot of additional information, like font changes and page numbers that needed to be stripped into a clean list of words. Only later I realized that it would have been easier to produce a cleaner word list to start with. So, I here present the revised code. This is actually tested with the book files to work. If you want to do something similar for your own book, report or thesis you can easily edit the code</p>
+</div>
+<div id="the-word-cloud" class="section level2">
+<h2>The word cloud</h2>
+<p>The word cloud that appears on the cover of the book is based on the frequency, or number of times, with which each R function or command appears in the index included at the back of the book. The wordcloud is a ggplot where frequency is mapped to both <code>colour</code> and <code>size</code> aesthetics and the text of the index entries is mapped to the <code>label</code> aesthetic. The positioning is automatically done by <code>geom_text_wordcloud()</code>. I used one of the Vididis colour scales.</p>
+<div class="figure">
+<img src="images/frontcover-9780367182533-scaled.jpg" title="Book cover" width="300" alt="" />
+<p class="caption">Wordcloud on book cover</p>
+</div>
+</div>
+<div id="reusable-code" class="section level2">
+<h2>Reusable code</h2>
+<p>First I need to explain how I encoded index entries in the <span class="math inline">\(\LaTeX\)</span> <code>.Rnw</code> source files. I did not use <code>\index</code> directly in the <code>.Rnw</code> source file but instead defined macros wrapping this command from index building system of <span class="math inline">\(\LaTeX\)</span>. In the case of macros for indexing <strong>R</strong> related words, the macros also added the mark up (font and shading) used in the main text in the same operation. In fact, I defined different macros for functions, classes, etc., even if some of the definitions were initially identical. This added a lot of flexibility; a flexibility that helped greatly when implementing the code for the word cloud.</p>
+<p>I show here only the macro for <strong>R</strong> <em>functions</em> as an example, although I also used similar macros for <em>methods</em>, <em>classes</em>, <em>operators</em>, etc., which allowed automating the hierarchical grouping of entries in the index.</p>
+<pre class="text"><code>\newcommand{\Rfunction}[1]{\textt{#1}\index[rindex]{#1@\texttt{#1}}\index[rcatsidx]{functions and methods!#1@\texttt{#1}}\xspace}</code></pre>
+<p>Those familiar with <span class="math inline">\(\LaTeX\)</span> will notice that the macro as defined above adds the argument to two different indexes, and encodes the argument in a “typewriter” font both in the main text and the two indexes.</p>
+<p>To generate a list of words without formatting mark-up, an additional index file named <code>cloudindex.idx</code> I added <code>\index[cloudindex]{#1}</code> to this and similar \<span class="math inline">\(\LaTeX\)</span> macros. I also added in the preamble of the book’s main source <code>.Rnw</code> file <code>\makeindex[name=cloudindex]</code> but did not add a <code>\printindex</code> for this index, so that it is not included in the book PDF.</p>
+<pre class="text"><code>\newcommand{\Rfunction}[1]{\code{#1}\index[rindex]{#1@\texttt{#1}}\index[rcatsidx]{functions and methods!#1@\texttt{#1}}\index[cloudindex]{#1}\xspace}</code></pre>
+<p>The contents of the file <code>cloudindex.idx</code> created when building the book PDF looks as follows, with rows ordered by page number, and containing one row for each call to <code>\index</code> (only first few out of more than 1000 lines are shown):</p>
+<pre class="text"><code>\indexentry{print()}{6}
+\indexentry{help()}{11}
+\indexentry{help()}{11}
+\indexentry{help()}{11}
+\indexentry{citation()}{12}
+\indexentry{numeric}{18}
+\indexentry{+}{18}
+\indexentry{-}{18}
+\indexentry{*}{18}
+\indexentry{/}{18}
+...</code></pre>
+<p>The R code used for extracting words, counting the number of entries for each word and assembling a <code>tibble</code> suitable as <code>data</code> argument for <code>ggplot()</code> is shown next.</p>
+<pre class="r"><code>library(ngram)
+library(ggplot2)
+library(ggwordcloud)
+library(dplyr)
+library(tidytext)
+library(stringr)
+library(wrapr)
+
+# define a function to extract index entries
+clean_words &lt;- function(x) { x %.&gt;%
+    # remove laTeX commands
+    gsub(&quot;\\\\indexentry|\\\\textbar|\\\\ldots&quot;, &quot;&quot;, x = .) %.&gt;%
+    # remove page numbers
+    gsub(&quot;[{][0-9]*[}]&quot;, &quot;&quot;, x = .) %.&gt;%
+    # remove all quotation marks
+    gsub(&#39;\\\\\&quot;|\\\&quot;|\\&quot;&#39;, &#39;&#39;, x = .) %.&gt;%
+    # replace scaped characters
+    gsub(&quot;\\\\_&quot;, &quot;_&quot;, x = .) %.&gt;%
+    gsub(&quot;\\\\%&quot;, &quot;%&quot;, x = .) %.&gt;%
+    gsub(&quot;\\\\[$]|\\[$]&quot;, &quot;$&quot;, x = .) %.&gt;% # $ needs to be protected
+    gsub(&quot;\\\\&amp;|\\&amp;&quot;, &quot;&amp;&quot;, x = .) %.&gt;%
+    gsub(&quot;\\\\^|\\^&quot;, &quot;^&quot;, x = .) %.&gt;%
+    # remove brackets
+    gsub(&quot;[{]|[}]&quot;, &quot;&quot;, x = .)
+}
+
+# read all index files, each one into a single character string
+list.files(path = &quot;.&quot;, pattern = &quot;*.idx$&quot;)
+indexed.words &lt;- multiread(extension=&quot;.idx&quot;, prune.empty = FALSE)
+# find the index we want to use
+names(indexed.words)
+
+# we grab the first one (edit index &quot;1&quot; as needed)
+my.idx &lt;- clean_words(indexed.words[[1]]) 
+# check what we have got 
+string.summary(my.idx) 
+# split index entries into strings, sort and count their frequency 
+my.idx %.&gt;%
+  str_split(., &quot; &quot;) %.&gt;%
+  unlist(.) %.&gt;%
+  sort(.) %.&gt;%
+  rle(.) %.&gt;% # rle is &quot;run length encoding&quot;
+  tibble(lengths = .$lengths, values = .$values) %.&gt;%
+  filter(., !values %in% c(&quot;&quot;, &quot;NA&quot;)) %.&gt;% # to be excluded
+  dplyr::arrange(., desc(lengths)) -&gt; word_counts.tb
+
+# number of distinct index entries
+nrow(word_counts.tb)
+# the six most frequent index entries
+head(word_counts.tb)</code></pre>
+<p>We plot the data as a word cloud using ‘ggplot2’ and package ‘ggwordcloud’. The values used as arguments for <code>grid_margin</code>, <code>max_size</code>, and the number of index entries or “words” plotted were selected by trial and error.</p>
+<pre class="r"><code>word_cloud.fig0 &lt;-
+ # we use the 180 most frequent entries
+  ggplot(word_counts.tb[1:180, ],
+         aes(label = values,
+             size = lengths,
+             color = lengths)) +
+  geom_text_wordcloud(family = &quot;mono&quot;,
+                      fontface = &quot;bold&quot;,
+                      area_corr = TRUE,
+                      grid_margin = 2,
+                      seed = 42) +
+  scale_size_area(max_size = 11) +
+  scale_color_viridis_c() +
+  theme_minimal() +
+  theme(aspect.ratio = 5/7)</code></pre>
+<p>We next give examples of how to create PNG files and of how style variations can also produced by “editing” a ggplot. It is important to be aware, that in these examples the background color was set when calling the <code>png()</code> device (equivalent to feeding paper of a different color to a printer) as is not coded as part of the ggplot. Of course, other R graphic devices can be used as well.</p>
+<pre class="r"><code># the word cloud used in the cover
+# note that the background color is set when opening the device
+png(&quot;CRC/web-examples/learnrbook-cover-image-300-0.png&quot;,
+    width = 2100, height = 1500, res = 300, bg = &quot;black&quot;)
+print(word_cloud.fig0)
+dev.off()
+
+# two examples using different palettes
+word_cloud.fig1 &lt;-
+  word_cloud.fig0 %+% scale_color_viridis_c(option = &quot;B&quot;)
+
+png(&quot;CRC/web-examples/learnrbook-cover-image-300-1.png&quot;,
+    width = 2100, height = 1500, res = 300, bg = &quot;grey25&quot;)
+print(word_cloud.fig1)
+dev.off()
+
+word_cloud.fig2 &lt;-
+  word_cloud.fig0 %+% scale_color_viridis_c(option = &quot;C&quot;)
+
+png(&quot;CRC/web-examples/learnrbook-cover-image-300-2.png&quot;,
+    width = 2100, height = 1500, res = 300, bg = &quot;black&quot;)
+print(word_cloud.fig2)
+dev.off()</code></pre>
+<p>In fact once we realize what needs to be done, and which are the most appropriate tools, a simple script can get the job done elegantly.</p>
+<p>The bitmap from the last example, which might have made it to the cover, is somewhat warmer in tone, but still overall matching the usual colours on the covers of books in <em>The R Series</em>. It also slightly differs from that on the book cover as a bug in the original script caused too high a count for the <code>%in%</code> index entry.</p>
+<div class="figure">
+<img src="images/learnrbook-cover-image-300-2.png" title="Word cloud from index entries" alt="" />
+<p class="caption">Word cloud</p>
+</div>
+</div>
+
+
+
+
+</div>
+
+<script>
+
+// add bootstrap table styles to pandoc tables
+function bootstrapStylePandocTables() {
+  $('tr.odd').parent('tbody').parent('table').addClass('table table-condensed');
+}
+$(document).ready(function () {
+  bootstrapStylePandocTables();
+});
+
+
+</script>
+
+<!-- tabsets -->
+
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+
+$(document).ready(function () {
+  $('.tabset-dropdown > .nav-tabs > li').click(function () {
+    $(this).parent().toggleClass('nav-tabs-open');
+  });
+});
+</script>
+
+<!-- code folding -->
+
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+</html>

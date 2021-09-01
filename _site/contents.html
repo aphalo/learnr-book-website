@@ -1,0 +1,495 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+<meta charset="utf-8" />
+<meta name="generator" content="pandoc" />
+<meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
+
+
+
+
+<title>Learn R: As a Language</title>
+
+<script src="site_libs/header-attrs-2.10/header-attrs.js"></script>
+<script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link href="site_libs/bootstrap-3.3.5/css/bootstrap.min.css" rel="stylesheet" />
+<script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/respond.min.js"></script>
+<style>h1 {font-size: 34px;}
+       h1.title {font-size: 38px;}
+       h2 {font-size: 30px;}
+       h3 {font-size: 24px;}
+       h4 {font-size: 18px;}
+       h5 {font-size: 16px;}
+       h6 {font-size: 12px;}
+       code {color: inherit; background-color: rgba(0, 0, 0, 0.04);}
+       pre:not([class]) { background-color: white }</style>
+<script src="site_libs/navigation-1.1/tabsets.js"></script>
+<link href="site_libs/highlightjs-9.12.0/default.css" rel="stylesheet" />
+<script src="site_libs/highlightjs-9.12.0/highlight.js"></script>
+<link href="site_libs/font-awesome-5.1.0/css/all.css" rel="stylesheet" />
+<link href="site_libs/font-awesome-5.1.0/css/v4-shims.css" rel="stylesheet" />
+
+<style type="text/css">
+  code{white-space: pre-wrap;}
+  span.smallcaps{font-variant: small-caps;}
+  span.underline{text-decoration: underline;}
+  div.column{display: inline-block; vertical-align: top; width: 50%;}
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+  ul.task-list{list-style: none;}
+    </style>
+
+<style type="text/css">code{white-space: pre;}</style>
+<script type="text/javascript">
+if (window.hljs) {
+  hljs.configure({languages: []});
+  hljs.initHighlightingOnLoad();
+  if (document.readyState && document.readyState === "complete") {
+    window.setTimeout(function() { hljs.initHighlighting(); }, 0);
+  }
+}
+</script>
+
+
+
+
+
+
+
+
+<style type = "text/css">
+.main-container {
+  max-width: 940px;
+  margin-left: auto;
+  margin-right: auto;
+}
+img {
+  max-width:100%;
+}
+.tabbed-pane {
+  padding-top: 12px;
+}
+.html-widget {
+  margin-bottom: 20px;
+}
+button.code-folding-btn:focus {
+  outline: none;
+}
+summary {
+  display: list-item;
+}
+pre code {
+  padding: 0;
+}
+</style>
+
+
+<style type="text/css">
+.dropdown-submenu {
+  position: relative;
+}
+.dropdown-submenu>.dropdown-menu {
+  top: 0;
+  left: 100%;
+  margin-top: -6px;
+  margin-left: -1px;
+  border-radius: 0 6px 6px 6px;
+}
+.dropdown-submenu:hover>.dropdown-menu {
+  display: block;
+}
+.dropdown-submenu>a:after {
+  display: block;
+  content: " ";
+  float: right;
+  width: 0;
+  height: 0;
+  border-color: transparent;
+  border-style: solid;
+  border-width: 5px 0 5px 5px;
+  border-left-color: #cccccc;
+  margin-top: 5px;
+  margin-right: -10px;
+}
+.dropdown-submenu:hover>a:after {
+  border-left-color: #adb5bd;
+}
+.dropdown-submenu.pull-left {
+  float: none;
+}
+.dropdown-submenu.pull-left>.dropdown-menu {
+  left: -100%;
+  margin-left: 10px;
+  border-radius: 6px 0 6px 6px;
+}
+</style>
+
+<script type="text/javascript">
+// manage active state of menu based on current page
+$(document).ready(function () {
+  // active menu anchor
+  href = window.location.pathname
+  href = href.substr(href.lastIndexOf('/') + 1)
+  if (href === "")
+    href = "index.html";
+  var menuAnchor = $('a[href="' + href + '"]');
+
+  // mark it active
+  menuAnchor.tab('show');
+
+  // if it's got a parent navbar menu mark it active as well
+  menuAnchor.closest('li.dropdown').addClass('active');
+
+  // Navbar adjustments
+  var navHeight = $(".navbar").first().height() + 15;
+  var style = document.createElement('style');
+  var pt = "padding-top: " + navHeight + "px; ";
+  var mt = "margin-top: -" + navHeight + "px; ";
+  var css = "";
+  // offset scroll position for anchor links (for fixed navbar)
+  for (var i = 1; i <= 6; i++) {
+    css += ".section h" + i + "{ " + pt + mt + "}\n";
+  }
+  style.innerHTML = "body {" + pt + "padding-bottom: 40px; }\n" + css;
+  document.head.appendChild(style);
+});
+</script>
+
+<!-- tabsets -->
+
+<style type="text/css">
+.tabset-dropdown > .nav-tabs {
+  display: inline-table;
+  max-height: 500px;
+  min-height: 44px;
+  overflow-y: auto;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.tabset-dropdown > .nav-tabs > li.active:before {
+  content: "";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li.active:before {
+  content: "&#xe258;";
+  border: none;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open:before {
+  content: "";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs > li.active {
+  display: block;
+}
+
+.tabset-dropdown > .nav-tabs > li > a,
+.tabset-dropdown > .nav-tabs > li > a:focus,
+.tabset-dropdown > .nav-tabs > li > a:hover {
+  border: none;
+  display: inline-block;
+  border-radius: 4px;
+  background-color: transparent;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li {
+  display: block;
+  float: none;
+}
+
+.tabset-dropdown > .nav-tabs > li {
+  display: none;
+}
+</style>
+
+<!-- code folding -->
+
+
+
+
+</head>
+
+<body>
+
+
+<div class="container-fluid main-container">
+
+
+
+
+<div class="navbar navbar-default  navbar-fixed-top" role="navigation">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="index.html">Learn R: As a Language</a>
+    </div>
+    <div id="navbar" class="navbar-collapse collapse">
+      <ul class="nav navbar-nav">
+        <li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+    <span class="fas fa-book fa-lg"></span>
+     
+    Book
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="contents.html">
+        <span class="fas fa-list fa-lg"></span>
+         
+        Contents
+      </a>
+    </li>
+    <li>
+      <a href="preface.html">
+        <span class="fas fa-file-alt fa-lg"></span>
+         
+        Preface
+      </a>
+    </li>
+    <li>
+      <a href="https://docs.r4photobiology.info/learnrbook/">
+        <span class="fas fa-file fa-lg"></span>
+         
+        R Code
+      </a>
+    </li>
+  </ul>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+    <span class="fas fa-paperclip fa-lg"></span>
+     
+    Supplements
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="learn-r-extra-web.pdf">
+        <span class="fas fa-file-pdf fa-lg"></span>
+         
+        Free chapters (draft)
+      </a>
+    </li>
+    <li>
+      <a href="wordcloud.html">
+        <span class="fas fa-file-alt fa-lg"></span>
+         
+        Wordcloud
+      </a>
+    </li>
+  </ul>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+    <span class="fas fa-folder-open fa-lg"></span>
+     
+    Also by the author
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="https://docs.r4photobiology.info/learnrbook/">
+        <span class="fas fa-file-alt fa-lg"></span>
+         
+        Package 'learnr-book'
+      </a>
+    </li>
+    <li>
+      <a href="https://docs.r4photobiology.info/ggpmisc/">
+        <span class="fas fa-file-alt fa-lg"></span>
+         
+        Package 'ggpmisc'
+      </a>
+    </li>
+    <li>
+      <a href="https://docs.r4photobiology.info/ggpp/">
+        <span class="fas fa-file-alt fa-lg"></span>
+         
+        Package 'ggpp'
+      </a>
+    </li>
+    <li>
+      <a href="https://docs.r4photobiology.info/gginnards/">
+        <span class="fas fa-file-alt fa-lg"></span>
+         
+        Package 'gginnards'
+      </a>
+    </li>
+    <li>
+      <a href="https://www.r4photobiology.info/">
+        <span class="fas fa-file-alt fa-lg"></span>
+         
+        R for Photobiology Suite
+      </a>
+    </li>
+  </ul>
+</li>
+<li>
+  <a href="about.html">
+    <span class="fas fa-address-card fa-lg"></span>
+     
+    About
+  </a>
+</li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        <li>
+  <a href="https://github.com/aphalo/learnr-book-crc">
+    <span class="fab fa-github fa-lg"></span>
+     
+    GitHub
+  </a>
+</li>
+      </ul>
+    </div><!--/.nav-collapse -->
+  </div><!--/.container -->
+</div><!--/.navbar -->
+
+<div id="header">
+
+
+
+<h1 class="title toc-ignore">Learn R: As a Language</h1>
+<h3 class="subtitle">Contents</h3>
+
+</div>
+
+
+<div class="figure">
+<img src="images/frontcover-9780367182533-scaled.jpg" title="The book cover" width="100" alt="" />
+<p class="caption">The book cover</p>
+</div>
+<div id="chapters-and-their-aims" class="section level2">
+<h2>Chapters and their aims</h2>
+<div id="preface" class="section level3">
+<h3>Preface</h3>
+</div>
+<div id="r-the-language-and-the-program" class="section level3">
+<h3>1. R: The language and the program</h3>
+<p>In this chapter you will learn some facts about the history and design aims behind the R language, its implementation in the R program, and how it is used in actual practice when sitting at a computer. You will learn the difference between typing commands interactively, reading each partial response from R on the screen as you type versus using R scripts to execute a “job” which saves results for later inspection by the user.</p>
+<p>I will describe the advantages and disadvantages of textual command languages such as R compared to menu-driven user interfaces as frequently used in other statistics software and occasionally also with R. I will discuss the role of textual languages in the very important question of reproducibility of data analyses.</p>
+<p>Finally you will learn about the different types and sources of help available to R users, and how to best make use of them.</p>
+</div>
+<div id="the-r-language-words-and-sentences" class="section level3">
+<h3>2. The R language: “Words” and “sentences”</h3>
+<p>In my experience, for those not familiar with computer programming languages, the best first step in learning the R language is to use it interactively by typing tex- tual commands at the console or command line. This will teach not only the syntax and grammar rules, but also give you a glimpse at the advantages and flexibility of this approach to data analysis.</p>
+<p>In the first part of the chapter we will use R to do everyday calculations that should be so easy and familiar that you will not need to think about the operations themselves. This easy start will give you a chance to focus on learning how to issue textual commands at the command prompt.</p>
+<p>Later in the chapter, you will gradually need to focus more on the R language and its grammar and less on how commands are entered. By the end of the chapter you will be familiar with most of the kinds of “words” used in the R language and you will be able to write simple “sentences” in R.</p>
+<p>Along the chapter, I will occasionally show the equivalent of the R code in math- ematical notation. If you are not familiar with the mathematical notation, you can safely ignore it, as long as you understand the R code.</p>
+</div>
+<div id="the-r-language-paragraphs-and-essays" class="section level3">
+<h3>3. The R language: “Paragraphs” and “essays”</h3>
+<p>For those who have mainly used graphical user interfaces, understanding why and when scripts can help in communicating a certain data analysis protocol can be revelatory. As soon as a data analysis stops being trivial, describing the steps fol- lowed through a system of menus and dialogue boxes becomes extremely tedious. Moreover, graphical user interfaces tend to be difficult to extend or improve in a way that keeps step-by-step instructions valid across program versions and operating systems.</p>
+<p>Many times, exactly the same sequence of commands needs to be applied to different data sets, and scripts make both implementation and validation of such a requirement easy.</p>
+<p>In this chapter, I will walk you through the use of R scripts, starting from an extremely simple script.</p>
+</div>
+<div id="the-r-language-statistics" class="section level3">
+<h3>4. The R language: Statistics</h3>
+<p>This chapter aims to give the reader only a quick introduction to statistics in base R, as there are many good texts on the use of R for different kinds of statistical analyses (see further reading on page 161). Although many of base R’s functions are specific to given statistical procedures, they use a particular approach to model specification and for returning the computed values that can be considered a part of the R language. Here you will learn the approaches used in R for calculating sta- tistical summaries, generating (pseudo-)random numbers, sampling, fitting models and carrying out tests of significance. We will use linear correlation, t-test, linear models, generalized linear models, non-linear models and some simple multivari- ate methods as examples. My aim is teaching how to specify models, contrasts and data used, and how to access different components of the objects returned by the corresponding fit and summary functions.</p>
+</div>
+<div id="the-r-language-adding-new-words" class="section level3">
+<h3>5. The R language: Adding new “words”</h3>
+<p>In earlier chapters we have only used base R features. In this chapter you will learn how to expand the range of features available. In the first part of the chapter we will focus on using existing packages and how they expand the functionality of R. In the second part you will learn how to define new functions, operators and classes. We will not consider the important, but more advanced question of packaging functions and classes into new R packages.</p>
+</div>
+<div id="new-grammars-of-data" class="section level3">
+<h3>6. New grammars of data</h3>
+<p>Base R and the recommended extension packages (installed by default) include many functions for manipulating data. The R distribution supplies a complete set of functions and operators that allow all the usual data manipulation operations. These functions have stable and well-described behavior, so they should be pre- ferred unless some of their limitations justify the use of alternatives defined in contributed packages. In the present chapter we aim at describing the new syn- taxes introduced by the most popular of these contributed R extension packages aiming at changing (usually improving one aspect at the expense of another) in var- ious ways how we can manipulate data in R. These independently developed pack- ages extend the R language not only by adding new “words” to it but by supporting new ways of meaningfully connecting “words”—i.e., providing new “grammars” for data manipulation.</p>
+</div>
+<div id="grammar-of-graphics" class="section level3">
+<h3>7. Grammar of graphics</h3>
+<p>Three main data plotting systems are available to R users: base R, package ‘lattice’ (Sarkar 2008) and package ‘ggplot2’ (Wickham and Sievert 2016), the last one be- ing the most recent and currently most popular system available in R for plotting data. Even two different sets of graphics primitives (i.e., those used to produce the simplest graphical elements such as lines and symbols) are available in R, those in base R and a newer one in the ‘grid’ package (Murrell 2011).</p>
+<p>In this chapter you will learn the concepts of the grammar of graphics, on which package ‘ggplot2’ is based. You will also learn how to build several types of data plots with package ‘ggplot2’. As a consequence of the popularity and flexibility of ‘ggplot2’, many contributed packages extending its functionality have been devel- oped and deposited in public repositories. However, I will focus mainly on package ‘ggplot2’ only briefly describing a few of these extensions.</p>
+</div>
+<div id="data-import-and-export" class="section level3">
+<h3>8. Data import and export</h3>
+<p>Base R and the recommended packages (installed by default) include several func- tions for importing and exporting data. Contributed packages provide both re- placements for some of these functions and support for several additional file formats. In the present chapter, I aim at describing both data input and output covering in detail only the most common “foreign” data formats (those not native to R).</p>
+<p>Data file formats that are foreign to R are not always well defined, making it necessary to reverse-engineer the algorithms needed to read them. These formats, even when clearly defined, may be updated by the developers of the foreign soft- ware that writes the files. Consequently, developing software to read and write files using foreign formats can easily result in long, messy, and ugly R scripts. We can also unwillingly write code that usually works but occasionally fails with specific files, or even worse, occasionally silently corrupts the imported data. The aim of this chapter is to provide guidance for finding functions for reading data encoded using foreign formats, covering both base R, including the ‘foreign’ package, and independently contributed packages. Such functions are well tested or validated.</p>
+<p>In this chapter you will familiarize yourself with how to exchange data between R and other applications. The functions <code>save()</code> and <code>load()</code>, and <code>saveRDS()</code> and <code>readRDS()</code>, all of which save and read data in R’s native formats, are described in sections 2.16.2 and 2.16.3 starting on page 79.</p>
+</div>
+</div>
+<div id="free-supplementary-chapters" class="section level2">
+<h2>Free supplementary chapters</h2>
+<div id="grammar-of-graphics-fonts" class="section level3">
+<h3>9. Grammar of Graphics: Fonts</h3>
+</div>
+<div id="grammar-of-graphics-color-palettes" class="section level3">
+<h3>10. Grammar of Graphics: Color palettes</h3>
+</div>
+<div id="a.-case-timeline-plots" class="section level3">
+<h3>A. Case: Timeline plots</h3>
+</div>
+</div>
+<div id="issues" class="section level2">
+<h2>Issues</h2>
+<p>Reports of errors and suggestions for enhancements of <em>this supplement</em> are welcome, preferably as Issues raised at <a href="https://github.com/aphalo/learnr-book-extra/issues" class="uri">https://github.com/aphalo/learnr-book-extra/issues</a>; the source of the supplement is at <a href="https://github.com/aphalo/learnr-book-extra" class="uri">https://github.com/aphalo/learnr-book-extra</a>.</p>
+</div>
+
+
+
+
+</div>
+
+<script>
+
+// add bootstrap table styles to pandoc tables
+function bootstrapStylePandocTables() {
+  $('tr.odd').parent('tbody').parent('table').addClass('table table-condensed');
+}
+$(document).ready(function () {
+  bootstrapStylePandocTables();
+});
+
+
+</script>
+
+<!-- tabsets -->
+
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+
+$(document).ready(function () {
+  $('.tabset-dropdown > .nav-tabs > li').click(function () {
+    $(this).parent().toggleClass('nav-tabs-open');
+  });
+});
+</script>
+
+<!-- code folding -->
+
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+</html>

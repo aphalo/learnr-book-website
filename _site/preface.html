@@ -1,0 +1,446 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+<meta charset="utf-8" />
+<meta name="generator" content="pandoc" />
+<meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
+
+
+
+
+<title>Learn R: As a Language</title>
+
+<script src="site_libs/header-attrs-2.10/header-attrs.js"></script>
+<script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link href="site_libs/bootstrap-3.3.5/css/bootstrap.min.css" rel="stylesheet" />
+<script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/respond.min.js"></script>
+<style>h1 {font-size: 34px;}
+       h1.title {font-size: 38px;}
+       h2 {font-size: 30px;}
+       h3 {font-size: 24px;}
+       h4 {font-size: 18px;}
+       h5 {font-size: 16px;}
+       h6 {font-size: 12px;}
+       code {color: inherit; background-color: rgba(0, 0, 0, 0.04);}
+       pre:not([class]) { background-color: white }</style>
+<script src="site_libs/navigation-1.1/tabsets.js"></script>
+<link href="site_libs/highlightjs-9.12.0/default.css" rel="stylesheet" />
+<script src="site_libs/highlightjs-9.12.0/highlight.js"></script>
+<link href="site_libs/font-awesome-5.1.0/css/all.css" rel="stylesheet" />
+<link href="site_libs/font-awesome-5.1.0/css/v4-shims.css" rel="stylesheet" />
+
+<style type="text/css">
+  code{white-space: pre-wrap;}
+  span.smallcaps{font-variant: small-caps;}
+  span.underline{text-decoration: underline;}
+  div.column{display: inline-block; vertical-align: top; width: 50%;}
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+  ul.task-list{list-style: none;}
+    </style>
+
+<style type="text/css">code{white-space: pre;}</style>
+<script type="text/javascript">
+if (window.hljs) {
+  hljs.configure({languages: []});
+  hljs.initHighlightingOnLoad();
+  if (document.readyState && document.readyState === "complete") {
+    window.setTimeout(function() { hljs.initHighlighting(); }, 0);
+  }
+}
+</script>
+
+
+
+
+
+
+
+
+<style type = "text/css">
+.main-container {
+  max-width: 940px;
+  margin-left: auto;
+  margin-right: auto;
+}
+img {
+  max-width:100%;
+}
+.tabbed-pane {
+  padding-top: 12px;
+}
+.html-widget {
+  margin-bottom: 20px;
+}
+button.code-folding-btn:focus {
+  outline: none;
+}
+summary {
+  display: list-item;
+}
+pre code {
+  padding: 0;
+}
+</style>
+
+
+<style type="text/css">
+.dropdown-submenu {
+  position: relative;
+}
+.dropdown-submenu>.dropdown-menu {
+  top: 0;
+  left: 100%;
+  margin-top: -6px;
+  margin-left: -1px;
+  border-radius: 0 6px 6px 6px;
+}
+.dropdown-submenu:hover>.dropdown-menu {
+  display: block;
+}
+.dropdown-submenu>a:after {
+  display: block;
+  content: " ";
+  float: right;
+  width: 0;
+  height: 0;
+  border-color: transparent;
+  border-style: solid;
+  border-width: 5px 0 5px 5px;
+  border-left-color: #cccccc;
+  margin-top: 5px;
+  margin-right: -10px;
+}
+.dropdown-submenu:hover>a:after {
+  border-left-color: #adb5bd;
+}
+.dropdown-submenu.pull-left {
+  float: none;
+}
+.dropdown-submenu.pull-left>.dropdown-menu {
+  left: -100%;
+  margin-left: 10px;
+  border-radius: 6px 0 6px 6px;
+}
+</style>
+
+<script type="text/javascript">
+// manage active state of menu based on current page
+$(document).ready(function () {
+  // active menu anchor
+  href = window.location.pathname
+  href = href.substr(href.lastIndexOf('/') + 1)
+  if (href === "")
+    href = "index.html";
+  var menuAnchor = $('a[href="' + href + '"]');
+
+  // mark it active
+  menuAnchor.tab('show');
+
+  // if it's got a parent navbar menu mark it active as well
+  menuAnchor.closest('li.dropdown').addClass('active');
+
+  // Navbar adjustments
+  var navHeight = $(".navbar").first().height() + 15;
+  var style = document.createElement('style');
+  var pt = "padding-top: " + navHeight + "px; ";
+  var mt = "margin-top: -" + navHeight + "px; ";
+  var css = "";
+  // offset scroll position for anchor links (for fixed navbar)
+  for (var i = 1; i <= 6; i++) {
+    css += ".section h" + i + "{ " + pt + mt + "}\n";
+  }
+  style.innerHTML = "body {" + pt + "padding-bottom: 40px; }\n" + css;
+  document.head.appendChild(style);
+});
+</script>
+
+<!-- tabsets -->
+
+<style type="text/css">
+.tabset-dropdown > .nav-tabs {
+  display: inline-table;
+  max-height: 500px;
+  min-height: 44px;
+  overflow-y: auto;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.tabset-dropdown > .nav-tabs > li.active:before {
+  content: "";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li.active:before {
+  content: "&#xe258;";
+  border: none;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open:before {
+  content: "";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs > li.active {
+  display: block;
+}
+
+.tabset-dropdown > .nav-tabs > li > a,
+.tabset-dropdown > .nav-tabs > li > a:focus,
+.tabset-dropdown > .nav-tabs > li > a:hover {
+  border: none;
+  display: inline-block;
+  border-radius: 4px;
+  background-color: transparent;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li {
+  display: block;
+  float: none;
+}
+
+.tabset-dropdown > .nav-tabs > li {
+  display: none;
+}
+</style>
+
+<!-- code folding -->
+
+
+
+
+</head>
+
+<body>
+
+
+<div class="container-fluid main-container">
+
+
+
+
+<div class="navbar navbar-default  navbar-fixed-top" role="navigation">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="index.html">Learn R: As a Language</a>
+    </div>
+    <div id="navbar" class="navbar-collapse collapse">
+      <ul class="nav navbar-nav">
+        <li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+    <span class="fas fa-book fa-lg"></span>
+     
+    Book
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="contents.html">
+        <span class="fas fa-list fa-lg"></span>
+         
+        Contents
+      </a>
+    </li>
+    <li>
+      <a href="preface.html">
+        <span class="fas fa-file-alt fa-lg"></span>
+         
+        Preface
+      </a>
+    </li>
+    <li>
+      <a href="https://docs.r4photobiology.info/learnrbook/">
+        <span class="fas fa-file fa-lg"></span>
+         
+        R Code
+      </a>
+    </li>
+  </ul>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+    <span class="fas fa-paperclip fa-lg"></span>
+     
+    Supplements
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="learn-r-extra-web.pdf">
+        <span class="fas fa-file-pdf fa-lg"></span>
+         
+        Free chapters (draft)
+      </a>
+    </li>
+    <li>
+      <a href="wordcloud.html">
+        <span class="fas fa-file-alt fa-lg"></span>
+         
+        Wordcloud
+      </a>
+    </li>
+  </ul>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+    <span class="fas fa-folder-open fa-lg"></span>
+     
+    Also by the author
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="https://docs.r4photobiology.info/learnrbook/">
+        <span class="fas fa-file-alt fa-lg"></span>
+         
+        Package 'learnr-book'
+      </a>
+    </li>
+    <li>
+      <a href="https://docs.r4photobiology.info/ggpmisc/">
+        <span class="fas fa-file-alt fa-lg"></span>
+         
+        Package 'ggpmisc'
+      </a>
+    </li>
+    <li>
+      <a href="https://docs.r4photobiology.info/ggpp/">
+        <span class="fas fa-file-alt fa-lg"></span>
+         
+        Package 'ggpp'
+      </a>
+    </li>
+    <li>
+      <a href="https://docs.r4photobiology.info/gginnards/">
+        <span class="fas fa-file-alt fa-lg"></span>
+         
+        Package 'gginnards'
+      </a>
+    </li>
+    <li>
+      <a href="https://www.r4photobiology.info/">
+        <span class="fas fa-file-alt fa-lg"></span>
+         
+        R for Photobiology Suite
+      </a>
+    </li>
+  </ul>
+</li>
+<li>
+  <a href="about.html">
+    <span class="fas fa-address-card fa-lg"></span>
+     
+    About
+  </a>
+</li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        <li>
+  <a href="https://github.com/aphalo/learnr-book-crc">
+    <span class="fab fa-github fa-lg"></span>
+     
+    GitHub
+  </a>
+</li>
+      </ul>
+    </div><!--/.nav-collapse -->
+  </div><!--/.container -->
+</div><!--/.navbar -->
+
+<div id="header">
+
+
+
+<h1 class="title toc-ignore">Learn R: As a Language</h1>
+<h3 class="subtitle">Preface</h3>
+
+</div>
+
+
+<div class="figure">
+<img src="images/frontcover-9780367182533-scaled.jpg" title="The book cover" width="100" alt="" />
+<p class="caption">The book cover</p>
+</div>
+<div id="preface" class="section level2">
+<h2>Preface</h2>
+<p>This book covers different aspects of the use of the <strong>R</strong> language. Chapters 1 to 5 describe the <strong>R</strong> language itself. Later chapters describe extensions to the <strong>R</strong> language available through contributed <em>packages</em>, the <em>grammar of data</em> and the <em>grammar of graphics</em>. In this book, explanations are concise but contain pointers to additional sources of information, so as to encourage the development of a routine of independent exploration. This is not an arbitrary decision, this is the normal <em>modus operandi</em> of most of us who use <strong>R</strong> regularly for a variety of different problems. Some have called approaches like the one used here “learning the hard way,” but I would call it “learning to be independent.”</p>
+<p>I do not discuss statistics or data analysis methods in this book; I describe <strong>R</strong> as a language for data manipulation and display. The idea is for you to learn the <strong>R</strong> language in a way comparable to how children learn a language: they work out what the rules are, simply by listening to people speak and trying to utter what they want to tell their parents. Of course, small children receive some guidance, but they are not taught a prescriptive set of rules like when learning a second language at school. Instead of listening, you will read code, and instead of speaking, you will try to execute <strong>R</strong> code statements on a computer-i.e., you will try your hand at using <strong>R</strong> to tell a computer what you want it to compute. I do provide explanations and guidance, but the idea of this book is for you to use the numerous examples to find out by yourself the overall patterns and coding philosophy behind the <strong>R</strong> language. Instead of parents being the sound board for your first utterances in <strong>R</strong>, the computer will play this role. You will <em>play</em> by modifying the examples, see how the computer responds: does <strong>R</strong> understand you or not? Using a language actively is the most efficient way of learning it. By using it, I mean actually reading, writing, and running scripts or programs (copying and pasting, or typing ready-made examples from books or the internet, does not qualify as using a language).</p>
+<p>I have been using <strong>R</strong> since around 1998 or 1999, but I am still constantly learning new things about <strong>R</strong> itself and <strong>R</strong> packages. With time, it has replaced in my work as a researcher and teacher several other pieces of software: <strong>SPSS</strong>, <strong>Systat</strong>, <strong>Origin</strong>, <strong>MS-Excel</strong>, and it has become a central piece of the tool set I use for producing lecture slides, notes, books, and even web pages. This is to say that it is the most useful piece of software and programming language I have ever learned to use. Of course, in time it will be replaced by something better, but at the moment it is a key language to learn for anybody with a need to analyze and display data.</p>
+<p>What is a language? A language is a system of communication. <strong>R</strong> as a language allows us to communicate with other members of the <strong>R</strong> community, and with computers. As with all languages in active use, <strong>R</strong> evolves. New “words” and new “constructs” are incorporated into the language, and some earlier frequently used ones are relegated to the fringes of the corpus. <em>I describe current usage and “modisms” of the <strong>R</strong> language in a way accessible to a readership unfamiliar with computer science but with some background in data analysis as used in biology, engineering, or the humanities.</em></p>
+<p>When teaching, I tend to lean toward challenging students, rather than telling an over-simplified story. There are two reasons for this. First, I prefer as a student, and I learn best myself, if the going is not too easy. Second, if I would hide the tricky bits of the <strong>R</strong> language, it would make the reader’s life much more difficult later on. You will not remember all the details; nobody could. However, you most likely will remember or develop a sense of when you need to be careful or should check the details. So, I will expose you not only to the usual cases, but also to several exceptions and counterintuitive features of the language, which I have highlighted with icons. Reading this book will be about exploring a new world; this book aims to be a travel guide, but neither a traveler’s account, nor a cookbook of <strong>R</strong> recipes.</p>
+<p>Keep in mind that it is impossible to remember everything about <strong>R</strong>! The <strong>R</strong> language, in a broad sense, is vast because its capabilities can be expanded with independently developed packages. Learning to use <strong>R</strong> consists of learning the basics plus developing the skill of finding your way in <strong>R</strong> and its documentation. In early 2020, the number of packages available in the Comprehensive R Archive Network (<strong>CRAN</strong>) broke the 15,000 barrier. CRAN is the most important, but not only, public repository for <strong>R</strong> packages. How good a command of the <strong>R</strong> language and packages a user needs depends on the type of activities to be carried out. This book attempts to train you in the use of the <strong>R</strong> language itself, and of popular <strong>R</strong> language extensions for data manipulation and graphical display. Given the availability of numerous books on statistical analysis with <strong>R</strong>, in the present book I will cover only the bare minimum of this subject. The same is true for package development in <strong>R</strong>. This book is somewhere in-between, aiming at teaching programming in the small: the use of <strong>R</strong> to automate the drudgery of data manipulation, including the different steps spanning from data input and exploration to the production of publication-quality illustrations.</p>
+<p>As with all “rich” languages, there are many different ways of doing things in <strong>R</strong>. In almost all cases there is no one-size-fits-all solution to a problem. There is always a compromise involved, usually between time spent by the user and processing time required in the computer. Many of the packages that are most popular nowadays did not exist when I started using <strong>R</strong>, and many of these packages make new approaches available. One could write many different <strong>R</strong> books with a given aim using substantially different ways of achieving the same results. In this book, I limit myself to packages that are currently popular and/or that I consider elegantly designed. I have in particular tried to limit myself to packages with similar design philosophies, especially in relation to their interfaces. What is elegant design, and in particular what is a friendly user interface, depends strongly on each user’s preferences and previous experience. Consequently, the contents of the book are strongly biased by my own preferences. I have tried to write examples in ways that execute fast without compromising readability. I encourage readers to take this book as a starting point for exploring the very many packages, styles, and approaches which I have not described.</p>
+<p>I will appreciate suggestions for further examples, and notification of errors and unclear sections. Because the examples here have been collected from diverse sources over many years, not all sources are acknowledged. If you recognize any example as yours or someone else’s, please let me know so that I can add a proper acknowledgement. I warmly thank the students who have asked the questions and posed the problems that have helped me write this text and correct the mistakes and voids of previous versions. I have also received help on online forums and in person from numerous people, learned from archived e-mail list messages, blog posts, books, articles, tutorials, webinars, and by struggling to solve some new problems on my own. In many ways this text owes much more to people who are not authors than to myself. However, as I am the one who has written this version and decided what to include and exclude, as author, I take full responsibility for any errors and inaccuracies.</p>
+<p>Why have I chosen the title “<em>Learn R: As a Language</em>”? This book is based on exploration and practice that aims at teaching to express various generic operations on data using the <strong>R</strong> language. It focuses on the language, rather than on specific types of data analysis, and exposes the reader to current usage and does not spare the quirks of the language. When we use our native language in everyday life, we do not think about grammar rules or sentence structure, except for the trickier or unfamiliar situations. My aim is for this book to help you grow to use <strong>R</strong> in this same way, to become fluent in <strong>R</strong>. The book is structured around the elements of languages with chapter titles that highlight the parallels between natural languages like English and the <strong>R</strong> language.</p>
+<hr />
+<p><em>I encourage you to approach <strong>R</strong> like a child approaches his or her mother tongue when first learning to speak: do not struggle, just play, and fool around with <strong>R</strong>! If the going gets difficult and frustrating, take a break! If you get a new insight, take a break to enjoy the victory!</em></p>
+<hr />
+</div>
+
+
+
+
+</div>
+
+<script>
+
+// add bootstrap table styles to pandoc tables
+function bootstrapStylePandocTables() {
+  $('tr.odd').parent('tbody').parent('table').addClass('table table-condensed');
+}
+$(document).ready(function () {
+  bootstrapStylePandocTables();
+});
+
+
+</script>
+
+<!-- tabsets -->
+
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+
+$(document).ready(function () {
+  $('.tabset-dropdown > .nav-tabs > li').click(function () {
+    $(this).parent().toggleClass('nav-tabs-open');
+  });
+});
+</script>
+
+<!-- code folding -->
+
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+</html>

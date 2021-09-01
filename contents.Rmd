@@ -1,0 +1,181 @@
+---
+title: "Learn R: As a Language"
+subtitle: "Contents"
+editor_options: 
+  markdown: 
+    wrap: 72
+---
+
+![The book
+cover](images/frontcover-9780367182533-scaled.jpg "The book cover"){width="100"}
+
+## Chapters and their aims
+
+### Preface
+
+### 1. R: The language and the program
+
+In this chapter you will learn some facts about the history and design
+aims behind the R language, its implementation in the R program, and how
+it is used in actual practice when sitting at a computer. You will learn
+the difference between typing commands interactively, reading each
+partial response from R on the screen as you type versus using R scripts
+to execute a "job" which saves results for later inspection by the user.
+
+I will describe the advantages and disadvantages of textual command
+languages such as R compared to menu-driven user interfaces as
+frequently used in other statistics software and occasionally also with
+R. I will discuss the role of textual languages in the very important
+question of reproducibility of data analyses.
+
+Finally you will learn about the different types and sources of help
+available to R users, and how to best make use of them.
+
+### 2. The R language: "Words" and "sentences"
+
+In my experience, for those not familiar with computer programming
+languages, the best first step in learning the R language is to use it
+interactively by typing tex- tual commands at the console or command
+line. This will teach not only the syntax and grammar rules, but also
+give you a glimpse at the advantages and flexibility of this approach to
+data analysis.
+
+In the first part of the chapter we will use R to do everyday
+calculations that should be so easy and familiar that you will not need
+to think about the operations themselves. This easy start will give you
+a chance to focus on learning how to issue textual commands at the
+command prompt.
+
+Later in the chapter, you will gradually need to focus more on the R
+language and its grammar and less on how commands are entered. By the
+end of the chapter you will be familiar with most of the kinds of
+"words" used in the R language and you will be able to write simple
+"sentences" in R.
+
+Along the chapter, I will occasionally show the equivalent of the R code
+in math- ematical notation. If you are not familiar with the
+mathematical notation, you can safely ignore it, as long as you
+understand the R code.
+
+### 3. The R language: "Paragraphs" and "essays"
+
+For those who have mainly used graphical user interfaces, understanding
+why and when scripts can help in communicating a certain data analysis
+protocol can be revelatory. As soon as a data analysis stops being
+trivial, describing the steps fol- lowed through a system of menus and
+dialogue boxes becomes extremely tedious. Moreover, graphical user
+interfaces tend to be difficult to extend or improve in a way that keeps
+step-by-step instructions valid across program versions and operating
+systems.
+
+Many times, exactly the same sequence of commands needs to be applied to
+different data sets, and scripts make both implementation and validation
+of such a requirement easy.
+
+In this chapter, I will walk you through the use of R scripts, starting
+from an extremely simple script.
+
+### 4. The R language: Statistics
+
+This chapter aims to give the reader only a quick introduction to
+statistics in base R, as there are many good texts on the use of R for
+different kinds of statistical analyses (see further reading on page
+161). Although many of base R's functions are specific to given
+statistical procedures, they use a particular approach to model
+specification and for returning the computed values that can be
+considered a part of the R language. Here you will learn the approaches
+used in R for calculating sta- tistical summaries, generating
+(pseudo-)random numbers, sampling, fitting models and carrying out tests
+of significance. We will use linear correlation, t-test, linear models,
+generalized linear models, non-linear models and some simple multivari-
+ate methods as examples. My aim is teaching how to specify models,
+contrasts and data used, and how to access different components of the
+objects returned by the corresponding fit and summary functions.
+
+### 5. The R language: Adding new "words"
+
+In earlier chapters we have only used base R features. In this chapter
+you will learn how to expand the range of features available. In the
+first part of the chapter we will focus on using existing packages and
+how they expand the functionality of R. In the second part you will
+learn how to define new functions, operators and classes. We will not
+consider the important, but more advanced question of packaging
+functions and classes into new R packages.
+
+### 6. New grammars of data
+
+Base R and the recommended extension packages (installed by default)
+include many functions for manipulating data. The R distribution
+supplies a complete set of functions and operators that allow all the
+usual data manipulation operations. These functions have stable and
+well-described behavior, so they should be pre- ferred unless some of
+their limitations justify the use of alternatives defined in contributed
+packages. In the present chapter we aim at describing the new syn- taxes
+introduced by the most popular of these contributed R extension packages
+aiming at changing (usually improving one aspect at the expense of
+another) in var- ious ways how we can manipulate data in R. These
+independently developed pack- ages extend the R language not only by
+adding new "words" to it but by supporting new ways of meaningfully
+connecting "words"---i.e., providing new "grammars" for data
+manipulation.
+
+### 7. Grammar of graphics
+
+Three main data plotting systems are available to R users: base R,
+package 'lattice' (Sarkar 2008) and package 'ggplot2' (Wickham and
+Sievert 2016), the last one be- ing the most recent and currently most
+popular system available in R for plotting data. Even two different sets
+of graphics primitives (i.e., those used to produce the simplest
+graphical elements such as lines and symbols) are available in R, those
+in base R and a newer one in the 'grid' package (Murrell 2011).
+
+In this chapter you will learn the concepts of the grammar of graphics,
+on which package 'ggplot2' is based. You will also learn how to build
+several types of data plots with package 'ggplot2'. As a consequence of
+the popularity and flexibility of 'ggplot2', many contributed packages
+extending its functionality have been devel- oped and deposited in
+public repositories. However, I will focus mainly on package 'ggplot2'
+only briefly describing a few of these extensions.
+
+### 8. Data import and export
+
+Base R and the recommended packages (installed by default) include
+several func- tions for importing and exporting data. Contributed
+packages provide both re- placements for some of these functions and
+support for several additional file formats. In the present chapter, I
+aim at describing both data input and output covering in detail only the
+most common "foreign" data formats (those not native to R).
+
+Data file formats that are foreign to R are not always well defined,
+making it necessary to reverse-engineer the algorithms needed to read
+them. These formats, even when clearly defined, may be updated by the
+developers of the foreign soft- ware that writes the files.
+Consequently, developing software to read and write files using foreign
+formats can easily result in long, messy, and ugly R scripts. We can
+also unwillingly write code that usually works but occasionally fails
+with specific files, or even worse, occasionally silently corrupts the
+imported data. The aim of this chapter is to provide guidance for
+finding functions for reading data encoded using foreign formats,
+covering both base R, including the 'foreign' package, and independently
+contributed packages. Such functions are well tested or validated.
+
+In this chapter you will familiarize yourself with how to exchange data
+between R and other applications. The functions `save()` and `load()`,
+and `saveRDS()` and `readRDS()`, all of which save and read data in R's
+native formats, are described in sections 2.16.2 and 2.16.3 starting on
+page 79.
+
+## Free supplementary chapters
+
+### 9. Grammar of Graphics: Fonts
+
+### 10. Grammar of Graphics: Color palettes
+
+### A. Case: Timeline plots
+
+## Issues
+
+Reports of errors and suggestions for enhancements of *this supplement*
+are welcome, preferably as Issues raised at
+<https://github.com/aphalo/learnr-book-extra/issues>; the source of the
+supplement is at <https://github.com/aphalo/learnr-book-extra>.

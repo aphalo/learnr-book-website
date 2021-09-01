@@ -1,0 +1,16 @@
+---
+title: "Learn R: As a Language"
+subtitle: "About the website"
+editor_options: 
+  markdown: 
+    wrap: 72
+---
+
+![The book
+cover](images/frontcover-9780367182533-scaled.jpg "The book cover"){width="100"}
+
+This website supports the book Learn _R: As a Language_ authored by Pedro J. 
+Aphalo and published in _The R Series_ by Chapman and Hall/CRC. The website was 
+built and is maintained by the author of the book.
+
+

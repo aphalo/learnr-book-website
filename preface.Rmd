@@ -1,0 +1,158 @@
+---
+title: "Learn R: As a Language"
+subtitle: "Preface"
+editor_options: 
+  markdown: 
+    wrap: 72
+---
+
+![The book
+cover](images/frontcover-9780367182533-scaled.jpg "The book cover"){width="100"}
+
+## Preface
+
+This book covers different aspects of the use of the **R** language.
+Chapters 1 to 5 describe the **R** language itself. Later chapters
+describe extensions to the **R** language available through contributed
+*packages*, the *grammar of data* and the *grammar of graphics*. In this
+book, explanations are concise but contain pointers to additional
+sources of information, so as to encourage the development of a routine
+of independent exploration. This is not an arbitrary decision, this is
+the normal *modus operandi* of most of us who use **R** regularly for a
+variety of different problems. Some have called approaches like the one
+used here "learning the hard way," but I would call it "learning to be
+independent."
+
+I do not discuss statistics or data analysis methods in this book; I
+describe **R** as a language for data manipulation and display. The idea
+is for you to learn the **R** language in a way comparable to how
+children learn a language: they work out what the rules are, simply by
+listening to people speak and trying to utter what they want to tell
+their parents. Of course, small children receive some guidance, but they
+are not taught a prescriptive set of rules like when learning a second
+language at school. Instead of listening, you will read code, and
+instead of speaking, you will try to execute **R** code statements on a
+computer-i.e., you will try your hand at using **R** to tell a computer
+what you want it to compute. I do provide explanations and guidance, but
+the idea of this book is for you to use the numerous examples to find
+out by yourself the overall patterns and coding philosophy behind the
+**R** language. Instead of parents being the sound board for your first
+utterances in **R**, the computer will play this role. You will *play*
+by modifying the examples, see how the computer responds: does **R**
+understand you or not? Using a language actively is the most efficient
+way of learning it. By using it, I mean actually reading, writing, and
+running scripts or programs (copying and pasting, or typing ready-made
+examples from books or the internet, does not qualify as using a
+language).
+
+I have been using **R** since around 1998 or 1999, but I am still
+constantly learning new things about **R** itself and **R** packages.
+With time, it has replaced in my work as a researcher and teacher
+several other pieces of software: **SPSS**, **Systat**, **Origin**,
+**MS-Excel**, and it has become a central piece of the tool set I use
+for producing lecture slides, notes, books, and even web pages. This is
+to say that it is the most useful piece of software and programming
+language I have ever learned to use. Of course, in time it will be
+replaced by something better, but at the moment it is a key language to
+learn for anybody with a need to analyze and display data.
+
+What is a language? A language is a system of communication. **R** as a
+language allows us to communicate with other members of the **R**
+community, and with computers. As with all languages in active use,
+**R** evolves. New "words" and new "constructs" are incorporated into
+the language, and some earlier frequently used ones are relegated to the
+fringes of the corpus. *I describe current usage and "modisms" of the
+**R** language in a way accessible to a readership unfamiliar with
+computer science but with some background in data analysis as used in
+biology, engineering, or the humanities.*
+
+When teaching, I tend to lean toward challenging students, rather than
+telling an over-simplified story. There are two reasons for this. First,
+I prefer as a student, and I learn best myself, if the going is not too
+easy. Second, if I would hide the tricky bits of the **R** language, it
+would make the reader's life much more difficult later on. You will not
+remember all the details; nobody could. However, you most likely will
+remember or develop a sense of when you need to be careful or should
+check the details. So, I will expose you not only to the usual cases,
+but also to several exceptions and counterintuitive features of the
+language, which I have highlighted with icons. Reading this book will be
+about exploring a new world; this book aims to be a travel guide, but
+neither a traveler's account, nor a cookbook of **R** recipes.
+
+Keep in mind that it is impossible to remember everything about **R**!
+The **R** language, in a broad sense, is vast because its capabilities
+can be expanded with independently developed packages. Learning to use
+**R** consists of learning the basics plus developing the skill of
+finding your way in **R** and its documentation. In early 2020, the
+number of packages available in the Comprehensive R Archive Network
+(**CRAN**) broke the 15,000 barrier. CRAN is the most important, but not
+only, public repository for **R** packages. How good a command of the
+**R** language and packages a user needs depends on the type of
+activities to be carried out. This book attempts to train you in the use
+of the **R** language itself, and of popular **R** language extensions
+for data manipulation and graphical display. Given the availability of
+numerous books on statistical analysis with **R**, in the present book I
+will cover only the bare minimum of this subject. The same is true for
+package development in **R**. This book is somewhere in-between, aiming
+at teaching programming in the small: the use of **R** to automate the
+drudgery of data manipulation, including the different steps spanning
+from data input and exploration to the production of publication-quality
+illustrations.
+
+As with all "rich" languages, there are many different ways of doing
+things in **R**. In almost all cases there is no one-size-fits-all
+solution to a problem. There is always a compromise involved, usually
+between time spent by the user and processing time required in the
+computer. Many of the packages that are most popular nowadays did not
+exist when I started using **R**, and many of these packages make new
+approaches available. One could write many different **R** books with a
+given aim using substantially different ways of achieving the same
+results. In this book, I limit myself to packages that are currently
+popular and/or that I consider elegantly designed. I have in particular
+tried to limit myself to packages with similar design philosophies,
+especially in relation to their interfaces. What is elegant design, and
+in particular what is a friendly user interface, depends strongly on
+each user's preferences and previous experience. Consequently, the
+contents of the book are strongly biased by my own preferences. I have
+tried to write examples in ways that execute fast without compromising
+readability. I encourage readers to take this book as a starting point
+for exploring the very many packages, styles, and approaches which I
+have not described.
+
+I will appreciate suggestions for further examples, and notification of
+errors and unclear sections. Because the examples here have been
+collected from diverse sources over many years, not all sources are
+acknowledged. If you recognize any example as yours or someone else's,
+please let me know so that I can add a proper acknowledgement. I warmly
+thank the students who have asked the questions and posed the problems
+that have helped me write this text and correct the mistakes and voids
+of previous versions. I have also received help on online forums and in
+person from numerous people, learned from archived e-mail list messages,
+blog posts, books, articles, tutorials, webinars, and by struggling to
+solve some new problems on my own. In many ways this text owes much more
+to people who are not authors than to myself. However, as I am the one
+who has written this version and decided what to include and exclude, as
+author, I take full responsibility for any errors and inaccuracies.
+
+Why have I chosen the title "*Learn R: As a Language*"? This book is
+based on exploration and practice that aims at teaching to express
+various generic operations on data using the **R** language. It focuses
+on the language, rather than on specific types of data analysis, and
+exposes the reader to current usage and does not spare the quirks of the
+language. When we use our native language in everyday life, we do not
+think about grammar rules or sentence structure, except for the trickier
+or unfamiliar situations. My aim is for this book to help you grow to
+use **R** in this same way, to become fluent in **R**. The book is
+structured around the elements of languages with chapter titles that
+highlight the parallels between natural languages like English and the
+**R** language.
+
+------------------------------------------------------------------------
+
+*I encourage you to approach **R** like a child approaches his or her
+mother tongue when first learning to speak: do not struggle, just play,
+and fool around with **R**! If the going gets difficult and frustrating,
+take a break! If you get a new insight, take a break to enjoy the
+victory!*
+
+------------------------------------------------------------------------

@@ -1,0 +1,60 @@
+---
+title: "Learn R: As a Language"
+subtitle: "A book in The R Series"
+author: "Authored by Pedro J. Aphalo"
+editor_options: 
+  markdown: 
+    wrap: 72
+---
+
+![The book
+cover](images/frontcover-9780367182533-scaled.jpg "The book cover"){width="100"}
+
+### The book in a nutshell
+
+My book on R was published on 29 July 2020. The [R package
+'learnrbook](https://cran.r-project.org/package=learnrbook "CRAN")'
+available through CRAN contains data and the **R** code from scripts and
+chunks in the book. I typeset the book using $\LaTeX$ and R package
+'knitr'. The book is available [from the publisher through the book's
+web
+page](https://www.routledge.com/Learn-R-As-a-Language/Aphalo/p/book/9780367182533)
+and from brick and mortar booksellers and web stores such as [The Book
+Depository](https://www.bookdepository.com/Learn-R-Pedro-J-Aphalo/9780367182533),
+[Amazon
+Germany](https://www.amazon.de/-/en/Pedro-J.-Aphalo/e/B08FGXWP8Q?ref_=dbs_p_pbk_r00_abau_000000)
+and [Amazon
+USA](https://www.amazon.com/Learn-Language-Chapman-Hall-CRC/dp/036718253X/ref=sr_1_3?dchild=1&keywords=Aphalo&qid=1630360872&sr=8-3).
+
+### News
+
+**[July 2021]** Only two small changes to the code chunks are needed to
+avoid deprecation messages from 'tidyverse' packages. The ['learnrbook'
+package](https://docs.r4photobiology.info/learnrbook/) (1.0.2) adds the
+**R** code for all code chunks in the book as executable and editable
+`.R` files. Additional material related to my 'ggplot2' extensions is
+available in the vignettes of my packages
+['gginnards'](https://docs.r4photobiology.info/gginnards/),
+['ggpp'](https://docs.r4photobiology.info/ggpp/) and
+['ggpmisc'](https://docs.r4photobiology.info/ggpmisc/), all available
+through CRAN.
+
+### Issues
+
+Reports of errors and suggestions for enhancements are welcome,
+preferably as Issues raised at
+<https://github.com/aphalo/learnr-book-crc/issues>; the source of the
+book is at <https://github.com/aphalo/learnr-book-crc>.
+
+------------------------------------------------------------------------
+
+![The book
+cover](images/frontcover-9780367182533-scaled.jpg "The book cover"){width="600"}
+
+------------------------------------------------------------------------
+
+![The book
+backcover](images/learnr-book-crc-backcover.png "The book backcover"){width="600"}
+
+------------------------------------------------------------------------
+
