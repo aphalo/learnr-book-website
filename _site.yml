@@ -41,6 +41,15 @@ navbar:
       - text: "R for Photobiology Suite"
         icon: fas fa-file-alt fa-lg
         href: https://www.r4photobiology.info/
+      - text: "R shinyapps: slides from course"
+        icon: fas fa-chalkboard-teacher fa-lg
+        href: https://aphalo.shinyapps.io/class01-practical/#1
+      - text: "R shinyapps: t distribution"
+        icon: fas fa-chalkboard-teacher fa-lg
+        href: https://aphalo.shinyapps.io/t-distribution
+      - text: "R shinyapps: F distribution"
+        icon: fas fa-chalkboard-teacher fa-lg
+        href: https://aphalo.shinyapps.io/F-distribution
     - text: "About"
       icon: fas fa-address-card fa-lg
       href: about.html
@@ -48,5 +57,4 @@ navbar:
     - text: "GitHub"
       icon: fab fa-github fa-lg
       href: https://github.com/aphalo/learnr-book-crc
-
 
