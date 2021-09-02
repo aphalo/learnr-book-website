@@ -13,4 +13,20 @@ This website supports the book Learn _R: As a Language_ authored by Pedro J.
 Aphalo and published in _The R Series_ by Chapman and Hall/CRC. The website was 
 built and is maintained by the author of the book.
 
+Book citation:
+
+```
+@Book{Aphalo2020a,
+  author    = {Pedro J. Aphalo},
+  date      = {2020},
+  title     = {Learn R: As a Language},
+  isbn      = {036718253X},
+  pagetotal = {350},
+  publisher = {CRC/Taylor & Francis Ltd},
+  series    = {The R Series},
+  ean       = {9780367182533},
+  year      = {2020},
+}
+```
+
 
