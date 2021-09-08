@@ -39,6 +39,8 @@ available in the vignettes of my packages
 ['ggpmisc'](https://docs.r4photobiology.info/ggpmisc/), all available
 through CRAN.
 
+**[September 2021]** I have made available through this website [supplementary chapters for the book](https://www.learnr-book.info/learn-r-extra-web.pdf) (over 100 pages). These are typeset using the same design as the book itself and numbering of chapters and pages continues from where they end in the book. These chapters are still work in progress. After further revision I intend to add the code they contain also to package 'learnrbook'. They are released under a CC-BY-SA 4.0 licence.
+
 ### Issues
 
 Reports of errors and suggestions for enhancements are welcome,

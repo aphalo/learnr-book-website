@@ -28,5 +28,3 @@ Book citation:
   year      = {2020},
 }
 ```
-
-
